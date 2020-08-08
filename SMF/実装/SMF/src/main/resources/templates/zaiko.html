@@ -14,13 +14,13 @@
               <th>食材名</th>
               <th>量</th>
             </tr>
-            <li th:each="z: ${zaikoList}">
-            <tr>
+            <tr th:each="z: ${zaikoList}">
+            <!-- <tr> -->
                 <td>[[${z.name}]] </td>
                 <td>[[${z.amount}]]</td>
                 <!-- on [[${z.expirationDate}]] -->
-            </tr>
-            </li>
+            <!-- </tr> -->
+        </tr>
         </table>
     </ul>
   
