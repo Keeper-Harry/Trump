@@ -20,4 +20,8 @@ public class ZaikoService {
         zaiko.forEach(list::add);
         return list;
     }
+
+    public Zaiko saveStocks(Zaiko zaiko){
+        return zr.save(zaiko);
+    }
 }

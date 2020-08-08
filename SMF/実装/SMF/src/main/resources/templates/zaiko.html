@@ -9,9 +9,19 @@
 <body>
     <h1>在庫一覧</h1>
     <ul>
-        <li th:each="z: ${zaikoList}">
-            [[${z.name}]] ： [[${z.amount}]] on [[${z.expirationDate}]]
-        </li>
+        <table border="1">
+            <tr>
+              <th>食材名</th>
+              <th>量</th>
+            </tr>
+            <li th:each="z: ${zaikoList}">
+            <tr>
+                <td>[[${z.name}]] </td>
+                <td>[[${z.amount}]]</td>
+                <!-- on [[${z.expirationDate}]] -->
+            </tr>
+            </li>
+        </table>
     </ul>
   
     <h2>新規登録する</h2>

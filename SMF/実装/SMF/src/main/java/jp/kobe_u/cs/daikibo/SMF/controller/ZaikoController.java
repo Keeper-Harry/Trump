@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.kobe_u.cs.daikibo.SMF.entity.Zaiko;
 import jp.kobe_u.cs.daikibo.SMF.service.ZaikoService;
@@ -28,4 +30,13 @@ public class ZaikoController {
         return "zaiko";
     }
     
+    @PostMapping("/manage")
+    String saveStocks(@ModelAttribute("zaikoForm") ZaikoForm form, Model model){
+        Zaiko z = new Zaiko();
+        z.setName(form.getName());
+        z.setAmount(form.getAmount());
+        //z.setExpirationDate(form.getExpirationDate());
+        zs.saveStocks(z);
+        return "redirect:/manage";
+    }
 }
