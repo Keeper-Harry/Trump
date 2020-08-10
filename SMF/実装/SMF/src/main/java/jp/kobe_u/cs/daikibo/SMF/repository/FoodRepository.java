@@ -7,5 +7,5 @@ import jp.kobe_u.cs.daikibo.SMF.entity.Food;
 
 @Repository
 public interface FoodRepository extends CrudRepository<Food, Long>{
-    
+    Food findByName(String name);
 }

@@ -44,7 +44,7 @@ public class StockController {
         Stock z = new Stock();
         Food f = new Food();
         f.setName(form.getName());
-        zs.saveFoods(f);
+        f = zs.saveFoods(f);
 
         z.setFid(f.getFid());
         z.setAmount(form.getAmount());

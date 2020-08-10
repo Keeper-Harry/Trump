@@ -40,6 +40,10 @@ public class StockAdminService {
         return zr.save(zaiko);
     }
     public Food saveFoods(Food food){
-        return fr.save(food);
+        String name = food.getName();
+        if(fr.findByName(name)==null)
+            return fr.save(food);
+        else
+            return fr.findByName(name);
     }
 }

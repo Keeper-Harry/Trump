@@ -15,6 +15,7 @@
               <th>量</th>
             </tr>
             <tr th:each="z: ${zaikoList}">
+                <td>[[${z.fid}]] </td>
                 <td>[[${z.amount}]] </td>
             </tr>
         </table>
