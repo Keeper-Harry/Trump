@@ -6,22 +6,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import jp.kobe_u.cs.daikibo.SMF.entity.Food;
 import jp.kobe_u.cs.daikibo.SMF.entity.Stock;
+import jp.kobe_u.cs.daikibo.SMF.repository.FoodRepository;
 import jp.kobe_u.cs.daikibo.SMF.repository.StockRepository;
 
 @Service
 public class StockService {
     @Autowired
-    StockRepository zr;
+    StockRepository sr;
+    @Autowired
+    FoodRepository fr;
 
-    public List<Stock> getAllZaiko(){
-        Iterable<Stock> zaiko = zr.findAll();
+    public List<Stock> getAllStocks(){
+        Iterable<Stock> stocks = sr.findAll();
         ArrayList<Stock> list = new ArrayList<>();
-        zaiko.forEach(list::add);
+        stocks.forEach(list::add);
         return list;
     }
 
-    public Stock saveStocks(Stock zaiko){
-        return zr.save(zaiko);
-    }
+    public Stock addStock(Food food, String amount){}
+
+    public Stock updateStock(Stock stock){}
+
+    public void deleteStock(Long sid){}
 }
