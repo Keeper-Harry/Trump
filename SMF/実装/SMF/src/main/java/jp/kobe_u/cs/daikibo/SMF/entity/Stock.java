@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Zaiko {
+public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

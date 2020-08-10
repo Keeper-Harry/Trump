@@ -3,9 +3,9 @@ package jp.kobe_u.cs.daikibo.SMF.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import jp.kobe_u.cs.daikibo.SMF.entity.Zaiko;
+import jp.kobe_u.cs.daikibo.SMF.entity.Stock;
 
 @Repository
-public interface ZaikoRepository extends CrudRepository<Zaiko, Long>{
+public interface StockRepository extends CrudRepository<Stock, Long>{
     
 }

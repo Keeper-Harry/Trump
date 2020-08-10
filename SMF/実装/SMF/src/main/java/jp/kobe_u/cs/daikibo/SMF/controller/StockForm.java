@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class ZaikoForm {
+public class StockForm {
     @NotBlank
     String name; //食材名
     String amount; //量
