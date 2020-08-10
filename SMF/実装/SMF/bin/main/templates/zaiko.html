@@ -11,7 +11,7 @@
     <ul>
         <table border="1">
             <tr>
-              <th>食材名</th>
+              <th>fid</th>
               <th>量</th>
             </tr>
             <tr th:each="z: ${zaikoList}">
@@ -25,7 +25,7 @@
         <table border="1">
             <tr>
               <th>食材名</th>
-              <th>食材</th>
+              <th>fid</th>
             </tr>
             <tr th:each="f: ${foodList}">
                 <td>[[${f.name}]] </td>
@@ -40,6 +40,8 @@
         <input type="text" th:field="*{name}" size="8"/>
         <label for="comment">量：</label>
         <input type="text" required th:field="*{amount}" />
+        <label for="comment">賞味期限：</label>
+        <input type="text" required th:field="*{expiration}" />
         <input type="submit" value="登録" />
     </form> 
 
