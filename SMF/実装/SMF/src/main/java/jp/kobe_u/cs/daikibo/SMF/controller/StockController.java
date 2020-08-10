@@ -52,12 +52,16 @@ public class StockController {
         z.setFid(f.getFid());
         z.setAmount(form.getAmount());
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 
         // Date型変換
-        String day = form.getExpiration();
-        Date expirationDate = sdf.parse(day);
+        String year = form.getYear();
+        String month = form.getMonth();
+        String date = form.getDate();
+
+        Date expirationDate = sdf.parse(year+month+date);
         System.out.println(expirationDate);
+        z.setExpirationDate(expirationDate);
         
         //z.setExpirationDate(form.getExpirationDate());
         zs.saveStocks(z);

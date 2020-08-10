@@ -9,5 +9,8 @@ public class StockForm {
     @NotBlank
     String name; //食材名
     String amount; //量
-    String expiration; //賞味期限
+    //賞味期限
+    String year;
+    String month;
+    String date;
 }
