@@ -9,13 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import jp.kobe_u.cs.daikibo.SMF.entity.Food;
 import jp.kobe_u.cs.daikibo.SMF.entity.Stock;
-import jp.kobe_u.cs.daikibo.SMF.service.StockService;
+import jp.kobe_u.cs.daikibo.SMF.service.StockAdminService;
 
 @Controller
 public class StockController {
     @Autowired
-    StockService zs;
+    StockAdminService zs;
 
     @GetMapping("/")
     String showIndex(){
@@ -24,19 +25,35 @@ public class StockController {
 
     @GetMapping("/manage")
     String showlist(Model model){
+        List<Food> foods = zs.getStockFood();
         List<Stock> list = zs.getAllZaiko(); // 在庫一覧を取得
+        
+        System.out.println("aaaaaaaaaaaaaaaaa");
+        System.out.println(list);
+        System.out.println(foods);
+
+        model.addAttribute("foodList", foods);
         model.addAttribute("zaikoList", list);   //モデル属性にリストをセット
         model.addAttribute("zaikoForm", new StockForm());  //空フォームをセット
+        
         return "zaiko";
     }
     
     @PostMapping("/manage")
     String saveStocks(@ModelAttribute("stockForm") StockForm form, Model model){
         Stock z = new Stock();
-        z.setName(form.getName());
+        Food f = new Food();
+        f.setName(form.getName());
+        zs.saveFoods(f);
+
+        z.setFid(f.getFid());
         z.setAmount(form.getAmount());
+        
         //z.setExpirationDate(form.getExpirationDate());
         zs.saveStocks(z);
+        System.out.println("uuuuuuuuuuuuuuuuuuuuu");
+        System.out.println(z);
+        System.out.println(f);
         return "redirect:/manage";
     }
 }

@@ -15,21 +15,26 @@
               <th>量</th>
             </tr>
             <tr th:each="z: ${zaikoList}">
-                <td>[[${z.amount}]] </td>
-            </tr>
+            <!-- <tr> -->
+                <td>[[${z.name}]] </td>
+                <td>[[${z.amount}]]</td>
+                <!-- on [[${z.expirationDate}]] -->
+            <!-- </tr> -->
+        </tr>
         </table>
     </ul>
-  
+
     <ul>
         <table border="1">
             <tr>
               <th>食材名</th>
-              <th>食材</th>
             </tr>
             <tr th:each="f: ${foodList}">
+            <!-- <tr> -->
                 <td>[[${f.name}]] </td>
-                <td>[[${f.fid}]] </td>
-            </tr>
+                <!-- on [[${z.expirationDate}]] -->
+            <!-- </tr> -->
+        </tr>
         </table>
     </ul>
   

@@ -18,7 +18,6 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     Long fid;
-    String name;
     String amount;
     
     @Temporal(TemporalType.TIMESTAMP)
