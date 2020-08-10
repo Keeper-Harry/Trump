@@ -13,15 +13,15 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Zaiko {
+public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long fid;
     String name;
-    String amount;
-    
+
     @Temporal(TemporalType.TIMESTAMP)
     Date createdAt; //作成日時
 
     Date expirationDate;//賞味期限
+    
 }
