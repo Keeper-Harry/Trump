@@ -16,13 +16,7 @@ import lombok.Data;
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long sid;
     Long fid;
-    String name;
     String amount;
-    
-    @Temporal(TemporalType.TIMESTAMP)
-    Date createdAt; //作成日時
-
-    Date expirationDate;//賞味期限
 }
