@@ -11,11 +11,10 @@
     <h1>在庫一覧</h1>
     <ul>
         <table border="1">
-            <tr>
-                <th>食材名</th>
-            </tr>
             <tr th:each="f: ${foodList}">
+                <th>食材名</th>
                 <td>[[${f.name}]] </td>
+
                 <tr>
                     <th>量</th>
                     <th>賞味期限</th>

@@ -18,13 +18,7 @@ public class StockAdminService {
     @Autowired
     FoodRepository fr;
 
-    public List<Stock> getAllZaiko(){
-        Iterable<Stock> zaiko = zr.findAll();
-        ArrayList<Stock> list = new ArrayList<>();
-        zaiko.forEach(list::add);
-        return list;
-    }
-
+    
     public List<Food> getStockFood(){
         Iterable<Stock> zaiko = zr.findAll();
         ArrayList<Long> fids = new ArrayList<>();
@@ -33,6 +27,21 @@ public class StockAdminService {
         Iterable<Food> foods = fr.findAllById(fids);
         ArrayList<Food> list = new ArrayList<>();
         foods.forEach(list::add);
+        return list;
+    }
+
+    public List<Stock> getAllZaiko(){
+        Iterable<Stock>  zaiko = zr.findAll();
+        ArrayList<Stock> list = new ArrayList<>();
+        zaiko.forEach(list::add);
+        return list;
+    }
+
+    
+    public List<Stock> getZaiko(){
+        ArrayList<Food> foods = (ArrayList<Food>) this.getStockFood();
+        ArrayList<Stock> list = new ArrayList<>();
+        foods.forEach(f -> list.add(zr.findByFid(f.getFid())) );
         return list;
     }
 
