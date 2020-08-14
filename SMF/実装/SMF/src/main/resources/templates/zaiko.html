@@ -7,18 +7,25 @@
 </head>
 
 <body>
+    <img th:src="@{/img/reizouko_open.png}">
     <h1>在庫一覧</h1>
     <ul>
         <table border="1">
             <tr>
-              <th>fid</th>
-              <th>量</th>
-              <th>賞味期限</th>
+                <th>食材名</th>
             </tr>
-            <tr th:each="z: ${zaikoList}">
-                <td>[[${z.fid}]] </td>
-                <td>[[${z.amount}]] </td>
-                <td>[[${z.expirationDate}]] </td>
+            <tr th:each="f: ${foodList}">
+                <td>[[${f.name}]] </td>
+                <tr>
+                    <th>量</th>
+                    <th>賞味期限</th>
+                </tr>
+            
+                <tr th:each="z: ${zaikoList}">
+                    <td>[[${z.fid}]] </td>
+                    <td>[[${z.amount}]] </td>
+                    <td>[[${z.expirationDate}]] </td>
+                </tr>
             </tr>
         </table>
     </ul>
@@ -26,22 +33,22 @@
     <ul>
         <table border="1">
             <tr>
-              <th>食材名</th>
-              <th>fid</th>
+            <th>fid</th>
+            <th>食材名</th>
             </tr>
             <tr th:each="f: ${foodList}">
-                <td>[[${f.name}]] </td>
                 <td>[[${f.fid}]] </td>
+                <td>[[${f.name}]] </td>
             </tr>
         </table>
     </ul>
   
     <h2>新規登録する</h2>
     <form th:action="@{/manage}" th:object="${zaikoForm}" method="post">
-        <label for="name">食材名：</label>
-        <input type="text" th:field="*{name}" size="8"/>
+        <label for="name">食材名　：</label>
+        <input type="text" th:field="*{name}" />
         <label for="comment">量：</label>
-        <input type="text" required th:field="*{amount}" /><br>
+        <input type="text" required th:field="*{amount}" size="8"/><br>
         
         <label for="comment">賞味期限：</label>
         <input type="text" required th:field="*{year}" />
