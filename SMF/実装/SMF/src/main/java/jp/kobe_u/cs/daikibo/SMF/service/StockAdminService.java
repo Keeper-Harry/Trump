@@ -29,6 +29,14 @@ public class StockAdminService {
         return list;
     }
 
+    public List<Food> getAllFood() {
+        Iterable<Food> food = fr.findAll();
+        ArrayList<Food> list = new ArrayList<>();
+
+        food.forEach(list::add);
+        return list;
+    }
+
     public List<Stock> getAllZaiko() {
         Iterable<Stock> zaiko = zr.findAll();
         ArrayList<Stock> list = new ArrayList<>();

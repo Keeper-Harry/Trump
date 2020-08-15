@@ -39,7 +39,7 @@
             <th>fid</th>
             <th>食材名</th>
             </tr>
-            <tr th:each="f: ${foodList}">
+            <tr th:each="f: ${allFoodList}">
                 <td>[[${f.fid}]] </td>
                 <td>[[${f.name}]] </td>
             </tr>

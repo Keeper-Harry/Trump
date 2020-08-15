@@ -29,9 +29,11 @@ public class StockAdminController {
 
     @GetMapping("/manage")
     String showlist(Model model) {
+        List<Food> allFood = zs.getAllFood();
         List<Food> foods = zs.getStockFood();
         List<Stock> list = zs.getAllZaiko(); // 在庫一覧を取得
 
+        model.addAttribute("allFoodList", allFood);
         model.addAttribute("foodList", foods);
         model.addAttribute("zaikoList", list); // モデル属性にリストをセット
         model.addAttribute("zaikoForm", new StockForm()); // 空フォームをセット
