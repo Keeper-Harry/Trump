@@ -3,12 +3,15 @@
   
 <head>
     <meta charset="UTF-8">
-    <title>在庫一覧</title>
+    <title>在庫詳細</title>
 </head>
 
 <body>
-    <img th:src="@{/img/reizouko_open.png}">
-    <h1>在庫一覧</h1>
+    <ul>
+    <!-- <img th:src="@{/img/reizouko_open.png}"> -->
+    <tr th:each="f: ${food}">
+            <h1>[[${f.name}]] </h1>
+    <tr>
     <ul>
         <table border="1">
             <tr th:each="f: ${food}">
