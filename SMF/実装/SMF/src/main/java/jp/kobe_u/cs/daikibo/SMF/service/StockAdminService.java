@@ -53,24 +53,19 @@ public class StockAdminService {
         return food;
     }
 
-    
-    // public List<Stock> getZaiko(){
-    //     ArrayList<Food> foods = (ArrayList<Food>) this.getStockFood();
-    //     ArrayList<Long> fids = new ArrayList<>();
-    //     Iterable<Stock> stocks = new ArrayList<>();
-    //     foods.forEach(f -> fids.add(f.getFid()));
-    //     fids.forEach(fid -> stocks=zr.findByFid(fid));
-    //     return list;
-    // }
-
     public Stock saveStocks(Stock zaiko){
         return zr.save(zaiko);
     }
+
     public Food saveFoods(Food food){
         String name = food.getName();
         if(fr.findByName(name)==null)
             return fr.save(food);
         else
             return fr.findByName(name);
+    }
+
+    public void deleteStocks(Stock zaiko){
+        zr.delete(zaiko);
     }
 }

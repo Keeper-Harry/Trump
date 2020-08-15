@@ -46,20 +46,29 @@ public class StockAdminController {
 
         model.addAttribute("food", food);
         model.addAttribute("zaikoList", list); // モデル属性にリストをセット
-        model.addAttribute("zaikoForm", new StockForm()); // 空フォームをセット
 
         return "read";
     }
 
-    @GetMapping("/delete/{fid}/{sid}")
-    String deleteStock(@PathVariable Long fid, @PathVariable Long sid, Model model) {
+    @GetMapping("/delete_config/{sid}")
+    String deleteStock(@PathVariable Long sid, Model model) {
         Stock stock = zs.getStockBySid(sid);
-        Food food = zs.getFood(fid);
+        Food food = zs.getFood(stock.getFid());
 
         model.addAttribute("food", food);
         model.addAttribute("stock", stock); // モデル属性にリストをセット
 
         return "delete_config";
+    }
+
+    @GetMapping("/delete/{sid}")
+    String deletedStock(@PathVariable Long sid, Model model) {
+        Stock stock = zs.getStockBySid(sid);
+        Food food = zs.getFood(stock.getFid());
+        model.addAttribute("food", food);
+        model.addAttribute("stock", stock); // モデル属性にリストをセット
+        zs.deleteStocks(stock);
+        return "/delete";
     }
 
     
@@ -100,4 +109,5 @@ public class StockAdminController {
         zs.saveStocks(z);
         return "redirect:/manage";
     }
+
 }

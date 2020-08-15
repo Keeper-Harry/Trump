@@ -28,22 +28,9 @@
                     <td>[[${z.expirationDate}]] </td>
                     <td>
                     <a th:href="@{/update/{fid}/{sid}(fid=${z.fid},sid=${z.sid})}">編集</a>
-                    <a th:href="@{/delete/{fid}/{sid}(fid=${z.fid},sid=${z.sid})}">削除</a>
+                    <a th:href="@{/delete_config/{sid}(sid=${z.sid})}">削除</a>
                     </td>
                 </tr>
-            </tr>
-        </table>
-    </ul>
-  
-    <ul>
-        <table border="1">
-            <tr>
-            <th>fid</th>
-            <th>食材名</th>
-            </tr>
-            <tr th:each="f: ${foodList}">
-                <td>[[${f.fid}]] </td>
-                <td>[[${f.name}]] </td>
             </tr>
         </table>
     </ul>
