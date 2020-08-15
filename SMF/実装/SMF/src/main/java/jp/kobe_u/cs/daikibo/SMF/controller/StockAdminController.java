@@ -51,16 +51,16 @@ public class StockAdminController {
         return "read";
     }
 
-    // @GetMapping("/delete/{fid}/{sid}")
-    // String deleteStock(@PathVariable Long fid, @PathVariable Long sid, Model model) {
-    //     Stock stock = zs.getStockBySid(sid);
-    //     Food food = zs.getFood(fid);
+    @GetMapping("/delete/{fid}/{sid}")
+    String deleteStock(@PathVariable Long fid, @PathVariable Long sid, Model model) {
+        Stock stock = zs.getStockBySid(sid);
+        Food food = zs.getFood(fid);
 
-    //     model.addAttribute("food", food);
-    //     model.addAttribute("stock", stock); // モデル属性にリストをセット
+        model.addAttribute("food", food);
+        model.addAttribute("stock", stock); // モデル属性にリストをセット
 
-    //     return "delete_config";
-    // }
+        return "delete_config";
+    }
 
     
     @GetMapping("/register")

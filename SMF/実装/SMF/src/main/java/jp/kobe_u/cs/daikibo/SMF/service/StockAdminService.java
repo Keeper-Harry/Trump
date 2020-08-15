@@ -43,10 +43,10 @@ public class StockAdminService {
         return list;
     }
 
-    // public Stock getStockBySid(Long sid) {
-    //     Stock stock = zr.findBySid(sid);
-    //     return stock;
-    // }
+    public Stock getStockBySid(Long sid) {
+        Stock stock = zr.findBySid(sid);
+        return stock;
+    }
 
     public Food getFood(Long fid){
         Food food = fr.findByFid(fid);

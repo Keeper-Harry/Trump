@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  
+<head>
+    <meta charset="UTF-8">
+    <title>在庫削除</title>
+</head>
+
+<body>
+    <img th:src="@{/img/reizouko_open.png}">
+    <h1>在庫削除</h1>
+    以下の在庫を削除します。よろしいですか。
+    <ul>
+        <table border="1">
+            <tr th:each="f: ${food}">
+                <th>食材名</th>
+                <td>
+                    [[${f.name}]] 
+                </td>
+
+                <tr>
+                    <th>量</th>
+                    <th>賞味期限</th>
+                </tr>
+            
+                <tr th:each="z: ${stock}">
+                    <td>[[${z.fid}]] </td>
+                    <td>[[${z.amount}]] </td>
+                    <td>[[${z.expirationDate}]] </td>
+                    <td>
+                    <a th:href="@{/read/{fid}(fid=${z.fid})}">戻る</a>
+                    <a th:href="@{/delete/{fid}/{sid}(fid=${z.fid},sid=${z.sid})}">削除する</a>
+                    </td>
+                </tr>
+            </tr>
+        </table>
+    </ul>
+  
+    <a th:href="@{/}">タイトル</a>
+    <a th:href="@{/manage}">在庫一覧</a>
+
+</body>
+  
+</html>

@@ -7,6 +7,6 @@ import jp.kobe_u.cs.daikibo.SMF.entity.Stock;
 
 @Repository
 public interface StockRepository extends CrudRepository<Stock, Long>{
-    // Stock findBySid(Long sid);
+    Stock findBySid(Long sid);
     Iterable<Stock>findByFid(Long fid);
 }
