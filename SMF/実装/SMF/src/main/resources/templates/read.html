@@ -11,12 +11,10 @@
     <h1>在庫一覧</h1>
     <ul>
         <table border="1">
-            <tr th:each="f: ${foodList}">
+            <tr th:each="f: ${food}">
                 <th>食材名</th>
                 <td>
                     [[${f.name}]] 
-                    <a th:href="@{/read/{fid}(fid=${f.fid})}">詳細</a>
-                    <a th:href="@{/}">戻る</a>
                 </td>
 
                 <tr>
@@ -28,6 +26,10 @@
                     <td>[[${z.fid}]] </td>
                     <td>[[${z.amount}]] </td>
                     <td>[[${z.expirationDate}]] </td>
+                    <td>
+                    <a th:href="@{/update/{fid}/{sid}(fid=${z.fid},sid=${z.sid})}">編集</a>
+                    <a th:href="@{/delete/{fid}/{sid}(fid=${z.fid},sid=${z.sid})}">削除</a>
+                    </td>
                 </tr>
             </tr>
         </table>
@@ -46,25 +48,8 @@
         </table>
     </ul>
   
-    <h2>新規登録する</h2>
-    <form th:action="@{/manage}" th:object="${zaikoForm}" method="post">
-        <label for="name">食材名　：</label>
-        <input type="text" th:field="*{name}" />
-        <label for="comment">量：</label>
-        <input type="text" required th:field="*{amount}" size="8"/><br>
-        
-        <label for="comment">賞味期限：</label>
-        <input type="text" required th:field="*{year}" />
-        <label for="comment">年</label>
-        <input type="text" required th:field="*{month}" />
-        <label for="comment">月</label>
-        <input type="text" required th:field="*{date}" />
-        <label for="comment">日</label>
-        <input type="submit" value="登録" />
-    </form> 
-
-    <h2>タイトルへ</h2>
-    <a th:href="@{/}">戻る</a>
+    <a th:href="@{/}">タイトル</a>
+    <a th:href="@{/manage}">在庫一覧</a>
 
 </body>
   

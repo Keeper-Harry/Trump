@@ -13,7 +13,11 @@
         <table border="1">
             <tr th:each="f: ${foodList}">
                 <th>食材名</th>
-                <td>[[${f.name}]] </td>
+                <td>
+                    [[${f.name}]] 
+                    <a th:href="@{/read/{fid}(fid=${f.fid})}">詳細</a>
+                    <a th:href="@{/}">戻る</a>
+                </td>
 
                 <tr>
                     <th>量</th>

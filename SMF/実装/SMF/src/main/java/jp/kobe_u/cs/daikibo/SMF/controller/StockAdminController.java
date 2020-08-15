@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jp.kobe_u.cs.daikibo.SMF.entity.Food;
@@ -17,7 +18,7 @@ import jp.kobe_u.cs.daikibo.SMF.entity.Stock;
 import jp.kobe_u.cs.daikibo.SMF.service.StockAdminService;
 
 @Controller
-public class StockController {
+public class StockAdminController {
     @Autowired
     StockAdminService zs;
 
@@ -31,15 +32,47 @@ public class StockController {
         List<Food> foods = zs.getStockFood();
         List<Stock> list = zs.getAllZaiko(); // 在庫一覧を取得
 
-        System.out.println("aaaaaaaaaaaaaaaaa");
-        System.out.println(list);
-        System.out.println(foods);
-
         model.addAttribute("foodList", foods);
         model.addAttribute("zaikoList", list); // モデル属性にリストをセット
         model.addAttribute("zaikoForm", new StockForm()); // 空フォームをセット
 
         return "zaiko";
+    }
+
+    @GetMapping("/read/{fid}")
+    String readStock(@PathVariable Long fid, Model model) {
+        Food food = zs.getFood(fid);
+        List<Stock> list = zs.getStockByFid(fid); // 在庫一覧を取得
+
+        model.addAttribute("food", food);
+        model.addAttribute("zaikoList", list); // モデル属性にリストをセット
+        model.addAttribute("zaikoForm", new StockForm()); // 空フォームをセット
+
+        return "read";
+    }
+
+    // @GetMapping("/delete/{fid}/{sid}")
+    // String deleteStock(@PathVariable Long fid, @PathVariable Long sid, Model model) {
+    //     Stock stock = zs.getStockBySid(sid);
+    //     Food food = zs.getFood(fid);
+
+    //     model.addAttribute("food", food);
+    //     model.addAttribute("stock", stock); // モデル属性にリストをセット
+
+    //     return "delete_config";
+    // }
+
+    
+    @GetMapping("/register")
+    String showRegisterForm(Model model) {
+        List<Food> foods = zs.getStockFood();
+        List<Stock> list = zs.getAllZaiko(); // 在庫一覧を取得
+
+        model.addAttribute("foodList", foods);
+        model.addAttribute("zaikoList", list); // モデル属性にリストをセット
+        model.addAttribute("zaikoForm", new StockForm()); // 空フォームをセット
+
+        return "register";
     }
 
     @PostMapping("/manage")
@@ -65,9 +98,6 @@ public class StockController {
         
         //z.setExpirationDate(form.getExpirationDate());
         zs.saveStocks(z);
-        System.out.println("uuuuuuuuuuuuuuuuuuuuu");
-        System.out.println(z);
-        System.out.println(f);
         return "redirect:/manage";
     }
 }
