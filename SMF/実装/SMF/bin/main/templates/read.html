@@ -7,11 +7,11 @@
 </head>
 
 <body>
-    <ul>
     <!-- <img th:src="@{/img/reizouko_open.png}"> -->
     <tr th:each="f: ${food}">
             <h1>[[${f.name}]] </h1>
-    <tr>
+    </tr>
+
     <ul>
         <table border="1">
             <tr th:each="f: ${food}">
@@ -40,7 +40,5 @@
   
     <a th:href="@{/}">タイトル</a>
     <a th:href="@{/manage}">在庫一覧</a>
-
 </body>
-  
 </html>
