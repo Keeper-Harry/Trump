@@ -16,7 +16,7 @@ import lombok.Data;
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long sid;
     Long fid;
     String name;
     String amount;

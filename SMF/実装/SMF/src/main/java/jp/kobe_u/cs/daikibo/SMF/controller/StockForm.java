@@ -1,7 +1,5 @@
 package jp.kobe_u.cs.daikibo.SMF.controller;
 
-//import java.util.Date;
-
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
