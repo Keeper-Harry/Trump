@@ -17,12 +17,13 @@ public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long fid;
-    
+
     String name;
 
     @Temporal(TemporalType.TIMESTAMP)
     Date createdAt; //作成日時
 
+    @Temporal(TemporalType.TIMESTAMP)
     Date expirationDate;//賞味期限
     
 }

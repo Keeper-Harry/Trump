@@ -1,7 +1,9 @@
 package jp.kobe_u.cs.daikibo.SMF.service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +23,11 @@ public class StockAdminService {
     public List<Food> getStockFood() {
         Iterable<Stock> zaiko = zr.findAll();
         ArrayList<Long> fids = new ArrayList<>();
+        ArrayList<Food> foods = new ArrayList<>();
 
-        zaiko.forEach(z -> fids.add(z.getFid()));
-        Iterable<Food> foods = fr.findAllById(fids);
-        ArrayList<Food> list = new ArrayList<>();
-        foods.forEach(list::add);
-        return list;
+        zaiko.forEach(z -> fids.add(z.getFid()));        
+        fids.forEach(fid -> foods.add(fr.findById(fid)));
+        return foods;
     }
 
     public List<Food> getAllFood() {
@@ -52,12 +53,12 @@ public class StockAdminService {
     }
 
     public Stock getStockBySid(Long sid) {
-        Stock stock = zr.findBySid(sid);
+        Stock stock = zr.findById(sid);
         return stock;
     }
 
     public Food getFood(Long fid){
-        Food food = fr.findByFid(fid);
+        Food food = fr.findById(fid);
         return food;
     }
 
@@ -67,10 +68,14 @@ public class StockAdminService {
 
     public Food saveFoods(Food food){
         String name = food.getName();
-        if(fr.findByName(name)==null)
+        Iterable<Food> registered = fr.findByName(name);
+        Iterator<Food> iter = registered.iterator();
+        if(iter.hasNext())
+            return iter.next();
+        else{
+            food.setCreatedAt(new Date());
             return fr.save(food);
-        else
-            return fr.findByName(name);
+        }
     }
 
     public void deleteStocks(Stock zaiko){

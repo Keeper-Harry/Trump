@@ -93,17 +93,17 @@ public class StockAdminController {
     String saveStocks(@ModelAttribute("stockForm") StockForm form, Model model) {
         Stock z = new Stock();
         Food f = new Food();
-        f.setName(form.getName());
-        f = zs.saveFoods(f);
-        
-        z.setName(form.getName());
-        z.setFid(f.getFid());
-        z.setAmount(form.getAmount());
 
+        f.setName(form.getName());
         LocalDate localDate = LocalDate.parse(form.getExpirationDate(), DateTimeFormatter.ISO_DATE); // 文字列をLocalDateに
         Date date = Date.from(localDate.atStartOfDay(ZoneId.of("Asia/Tokyo")).toInstant()); // LocalDateをDateに
-        z.setExpirationDate(date);
+        f.setExpirationDate(date);
+        f = zs.saveFoods(f);
+        
+        z.setFid(f.getFid());
+        z.setAmount(form.getAmount());
         zs.saveStocks(z);
+
         return "redirect:/manage";
     }
 
