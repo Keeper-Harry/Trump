@@ -3,7 +3,7 @@
   
 <head>
     <meta charset="UTF-8">
-    <title>在庫一覧</title>
+    <title>在庫詳細</title>
     <style>
         .a_button {
           display: inline-block;
@@ -20,42 +20,35 @@
 </head>
 
 <body>
-    <img th:src="@{/img/reizouko_open.png}">
-    <h1>在庫一覧</h1>
+    <!-- <img th:src="@{/img/reizouko_open.png}"> -->
+    <tr th:each="f: ${food}">
+            <h1>[[${f.name}]] </h1>
+    </tr>
+
     <ul>
         <table border="1">
-            <tr th:each="f: ${foodList}">
+            <tr th:each="f: ${food}">
+
                 <tr>
                     <th>食材名</th>
                     <th>量</th>
                     <th>賞味期限</th>
-                    <th>詳細</th>
                 </tr>
-
+            
                 <tr th:each="z: ${zaikoList}">
                     <td>[[${z.name}]] </td>
-                    <td>[[${z.amount}]]</td>
+                    <td>[[${z.amount}]] </td>
                     <td>[[${#dates.format(z.expirationDate, 'yyyy-MM-dd')}]]</td>
-                    <td><a class="a_button" th:href="@{/read/{fid}(fid=${z.fid})}">詳細</a></td>
+                    <td>
+                    <a class="a_button" th:href="@{/update/{fid}/{sid}(fid=${z.fid},sid=${z.sid})}">編集</a>
+                    <a class="a_button" th:href="@{/delete_config/{sid}(sid=${z.sid})}">削除</a>
+                    </td>
                 </tr>
             </tr>
         </table>
     </ul>
-    
-    <h2>食材を登録する</h2>
-    <form th:action="@{/manage}" th:object="${zaikoForm}" method="post">
-        <label for="name">食材名：</label>
-        <input type="text" th:field="*{name}" required size="16"/>
-        <label for="comment">量：</label>
-        <input type="text" required th:field="*{amount}" />
-        <label for="comment">賞味期限：</label>
-        <input type="date" name="calendar" th:field="*{expirationDate}" max="9999-12-31" required/>
-        <input type="submit" value="登録" />
-    </form> 
-
-    <h2>タイトルへ</h2>
-    <a class="a_button" th:href="@{/}">戻る</a>
-
-</body>
   
+    <a class="a_button" th:href="@{/}">タイトル</a>
+    <a class="a_button" th:href="@{/manage}">在庫一覧</a>
+</body>
 </html>

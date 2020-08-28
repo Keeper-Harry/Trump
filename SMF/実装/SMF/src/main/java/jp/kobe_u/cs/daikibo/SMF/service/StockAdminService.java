@@ -12,22 +12,68 @@ import jp.kobe_u.cs.daikibo.SMF.repository.FoodRepository;
 import jp.kobe_u.cs.daikibo.SMF.repository.StockRepository;
 
 @Service
-public class StockService {
+public class StockAdminService {
     @Autowired
-    StockRepository sr;
+    StockRepository zr;
     @Autowired
     FoodRepository fr;
 
-    public List<Stock> getAllStocks(){
-        Iterable<Stock> stocks = sr.findAll();
+    public List<Food> getStockFood() {
+        Iterable<Stock> zaiko = zr.findAll();
+        ArrayList<Long> fids = new ArrayList<>();
+
+        zaiko.forEach(z -> fids.add(z.getFid()));
+        Iterable<Food> foods = fr.findAllById(fids);
+        ArrayList<Food> list = new ArrayList<>();
+        foods.forEach(list::add);
+        return list;
+    }
+
+    public List<Food> getAllFood() {
+        Iterable<Food> food = fr.findAll();
+        ArrayList<Food> list = new ArrayList<>();
+
+        food.forEach(list::add);
+        return list;
+    }
+
+    public List<Stock> getAllZaiko() {
+        Iterable<Stock> zaiko = zr.findAll();
         ArrayList<Stock> list = new ArrayList<>();
         stocks.forEach(list::add);
         return list;
     }
 
-    public Stock addStock(Food food, String amount){}
+    public List<Stock> getStockByFid(Long fid) {
+        Iterable<Stock> stocks = zr.findByFid(fid);
+        ArrayList<Stock> list = new ArrayList<>();
+        stocks.forEach(list::add);
+        return list;
+    }
 
-    public Stock updateStock(Stock stock){}
+    public Stock getStockBySid(Long sid) {
+        Stock stock = zr.findBySid(sid);
+        return stock;
+    }
 
-    public void deleteStock(Long sid){}
+    public Food getFood(Long fid){
+        Food food = fr.findByFid(fid);
+        return food;
+    }
+
+    public Stock saveStocks(Stock zaiko){
+        return zr.save(zaiko);
+    }
+
+    public Food saveFoods(Food food){
+        String name = food.getName();
+        if(fr.findByName(name)==null)
+            return fr.save(food);
+        else
+            return fr.findByName(name);
+    }
+
+    public void deleteStocks(Stock zaiko){
+        zr.delete(zaiko);
+    }
 }

@@ -17,6 +17,7 @@ public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long fid;
+    
     String name;
 
     @Temporal(TemporalType.TIMESTAMP)
