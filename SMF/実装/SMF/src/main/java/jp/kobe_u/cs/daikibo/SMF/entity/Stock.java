@@ -23,6 +23,7 @@ public class Stock {
     
     @Temporal(TemporalType.TIMESTAMP)
     Date createdAt; //作成日時
-
+    @Temporal(TemporalType.TIMESTAMP)
+    Date updatedAt;
     Date expirationDate;//賞味期限
 }

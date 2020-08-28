@@ -3,7 +3,7 @@
   
 <head>
     <meta charset="UTF-8">
-    <title>在庫詳細</title>
+    <title>在庫削除</title>
     <style>
         .a_button {
           display: inline-block;
@@ -21,27 +21,24 @@
 
 <body>
     <!-- <img th:src="@{/img/reizouko_open.png}"> -->
-    <tr th:each="f: ${food}">
-            <h1>[[${f.name}]] </h1>
-    </tr>
-
+    <h1>在庫削除</h1>
+    以下の在庫を削除します。よろしいですか。
     <ul>
         <table border="1">
             <tr th:each="f: ${food}">
-
                 <tr>
                     <th>食材名</th>
                     <th>量</th>
                     <th>賞味期限</th>
                 </tr>
             
-                <tr th:each="z: ${zaikoList}">
+                <tr th:each="z: ${stock}">
                     <td>[[${z.name}]] </td>
                     <td>[[${z.amount}]] </td>
                     <td>[[${#dates.format(z.expirationDate, 'yyyy-MM-dd')}]]</td>
                     <td>
-                    <a class="a_button" th:href="@{/update/{sid}(sid=${z.sid})}">編集</a>
-                    <a class="a_button" th:href="@{/delete_config/{sid}(sid=${z.sid})}">削除</a>
+                    <a class="a_button" th:href="@{/read/{fid}(fid=${z.fid})}">戻る</a>
+                    <a class="a_button" th:href="@{/delete/{sid}(sid=${z.sid})}">削除する</a>
                     </td>
                 </tr>
             </tr>
@@ -50,5 +47,7 @@
   
     <a class="a_button" th:href="@{/}">タイトル</a>
     <a class="a_button" th:href="@{/manage}">在庫一覧</a>
+
 </body>
+  
 </html>

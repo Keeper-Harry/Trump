@@ -55,6 +55,18 @@ public class StockAdminController {
         return "read";
     }
 
+    @GetMapping("/update/{sid}")
+    String showupdate(@PathVariable Long sid, Model model) {
+        Stock stock = zs.getStockBySid(sid);
+        Food food = zs.getFood(stock.getFid());
+
+        model.addAttribute("food", food);
+        model.addAttribute("stock", stock); // モデル属性にリストをセット
+        model.addAttribute("zaikoForm", new StockForm()); // 空フォームをセット
+
+        return "update";
+    }
+
     @GetMapping("/delete_config/{sid}")
     String deleteStock(@PathVariable Long sid, Model model) {
         Stock stock = zs.getStockBySid(sid);
@@ -105,6 +117,26 @@ public class StockAdminController {
         z.setExpirationDate(date);
         zs.saveStocks(z);
         return "redirect:/manage";
+    }
+
+    @PostMapping("/updated/{sid}")
+    String updateStocks(@PathVariable Long sid, @ModelAttribute("stockForm") StockForm form, Model model) {
+        Stock z = new Stock();
+        Food f = new Food();
+        
+        f.setName(form.getName());
+        f = zs.saveFoods(f);
+        
+        z.setSid(sid);
+        z.setName(form.getName());
+        z.setFid(f.getFid());
+        z.setAmount(form.getAmount());
+
+        LocalDate localDate = LocalDate.parse(form.getExpirationDate(), DateTimeFormatter.ISO_DATE); // 文字列をLocalDateに
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.of("Asia/Tokyo")).toInstant()); // LocalDateをDateに
+        z.setExpirationDate(date);
+        zs.updateStocks(z);
+        return "updated";
     }
 
 }
