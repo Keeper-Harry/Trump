@@ -40,7 +40,7 @@
                     <td>[[${z.amount}]] </td>
                     <td>[[${#dates.format(z.expirationDate, 'yyyy-MM-dd')}]]</td>
                     <td>
-                    <a class="a_button" th:href="@{/update/{fid}/{sid}(fid=${z.fid},sid=${z.sid})}">編集</a>
+                    <a class="a_button" th:href="@{/update/{sid}(sid=${z.sid})}">編集</a>
                     <a class="a_button" th:href="@{/delete_config/{sid}(sid=${z.sid})}">削除</a>
                     </td>
                 </tr>

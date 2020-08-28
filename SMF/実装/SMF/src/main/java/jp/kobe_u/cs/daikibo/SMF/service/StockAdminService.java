@@ -73,6 +73,10 @@ public class StockAdminService {
             return fr.findByName(name);
     }
 
+    public Stock updateStocks(Stock zaiko){
+        return zr.save(zaiko);
+    }
+
     public void deleteStocks(Stock zaiko){
         zr.delete(zaiko);
     }
