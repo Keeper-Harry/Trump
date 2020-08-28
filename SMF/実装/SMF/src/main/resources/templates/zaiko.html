@@ -24,21 +24,13 @@
     <h1>在庫一覧</h1>
     <ul>
         <table border="1">
-            <tr th:each="f: ${foodList}">
-                <tr>
-                    <th>食材名</th>
-                    <th>量</th>
-                    <th>賞味期限</th>
-                    <th>詳細</th>
+                <th>食材名</th>
+                <th>詳細</th>
+             
+                <tr th:each="f: ${foodList}">
+                    <td>[[${f.name}]] </td>
+                    <td><a class="a_button" th:href="@{/read/{fid}(fid=${f.fid})}">詳細</a></td>
                 </tr>
-
-                <tr th:each="z: ${zaikoList}">
-                    <td>[[${z.name}]] </td>
-                    <td>[[${z.amount}]]</td>
-                    <td>[[${#dates.format(z.expirationDate, 'yyyy-MM-dd')}]]</td>
-                    <td><a class="a_button" th:href="@{/read/{fid}(fid=${z.fid})}">詳細</a></td>
-                </tr>
-            </tr>
         </table>
     </ul>
     
